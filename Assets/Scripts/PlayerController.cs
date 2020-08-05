@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isJumping = false;
 
-	[HideInInspector]
+    [HideInInspector]
     public bool poweredUp = false;
 
     [HideInInspector]
@@ -187,71 +187,73 @@ public class PlayerController : MonoBehaviour
             }
 
 
-         playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r, playerSpriteRenderer.color.g, playerSpriteRenderer.color.b, newAlpha);
+            playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r, playerSpriteRenderer.color.g, playerSpriteRenderer.color.b, newAlpha);
 
-        if (playerRigidbody2D.position.y < deathHeight)
-        {
-            SceneManager.LoadScene(1);
+            if (playerRigidbody2D.position.y < deathHeight)
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 
-    public void PowerUp()
-    {
-        if (!poweredUp)
+        public void PowerUp()
         {
-            playerAnimator.runtimeAnimatorController = bigMarioAnimatorController as RuntimeAnimatorController;
-            playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
-            playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
-            poweredUp = true;
+            if (!poweredUp)
+            {
+                playerAnimator.runtimeAnimatorController = bigMarioAnimatorController as RuntimeAnimatorController;
+                playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
+                playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
+                poweredUp = true;
+            }
+
         }
-        
-    }
 
-    public void Die()
-    {
-        if (poweredUp && !isDead && !isInvulnerable)
+        public void Die()
         {
-            playerAnimator.runtimeAnimatorController = smallMarioAnimatorController as RuntimeAnimatorController;
-            playerCapsuleCollider2D.offset = new Vector2(0, 0f);
-            playerCapsuleCollider2D.size = new Vector2(1, 1);
-            poweredUp = false;
-            isInvulnerable = true;
-            invulnerabilityTimer = invulnerabilityTime;
+            if (poweredUp && !isDead && !isInvulnerable)
+            {
+                playerAnimator.runtimeAnimatorController = smallMarioAnimatorController as RuntimeAnimatorController;
+                playerCapsuleCollider2D.offset = new Vector2(0, 0f);
+                playerCapsuleCollider2D.size = new Vector2(1, 1);
+                poweredUp = false;
+                isInvulnerable = true;
+                invulnerabilityTimer = invulnerabilityTime;
+            }
+            else if (!isInvulnerable)
+            {
+                playerRigidbody2D.velocity = new Vector2(0, jumpVelocity);
+                playerAnimator.SetBool("dead", true);
+                playerCapsuleCollider2D.enabled = false;
+                isDead = true;
+            }
+
         }
-        else if (!isInvulnerable)
+
+        void FlipSprite()
         {
-            playerRigidbody2D.velocity = new Vector2(0, jumpVelocity);
-            playerAnimator.SetBool("dead", true);
-            playerCapsuleCollider2D.enabled = false;
-            isDead = true;
-        }        
-        
+            isFacingRight = !isFacingRight;
+            Vector3 tempScale = transform.localScale;
+            tempScale.x *= -1;
+            transform.localScale = tempScale;
+        }
+
+        private void CheckIfStuck()
+        {
+            //Taking away users control when player is not touching the ground and not moving to any direction
+            if (!isTouchingGround && playerRigidbody2D.velocity == Vector2.zero)
+                takeAwayControll = true;
+
+            if (takeAwayControll)
+                movementInput = 0;
+
+            //if starts touching ground - give control back
+            if (isTouchingGround)
+                takeAwayControll = false;
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            takeAwayControll = false; //give back control when it's no longer colliding with anything
+        }
     }
 
-    void FlipSprite()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 tempScale = transform.localScale;
-        tempScale.x *= -1;
-        transform.localScale = tempScale;
-    }
-
-    private void CheckIfStuck()
-    {
-        //Taking away users control when player is not touching the ground and not moving to any direction
-        if (!isTouchingGround && playerRigidbody2D.velocity == Vector2.zero)
-            takeAwayControll = true;
-
-        if (takeAwayControll)
-            movementInput = 0;
-
-        //if starts touching ground - give control back
-        if (isTouchingGround)
-            takeAwayControll = false;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        takeAwayControll = false; //give back control when it's no longer colliding with anything
-    }
-}
