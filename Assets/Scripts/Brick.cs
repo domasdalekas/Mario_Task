@@ -34,7 +34,7 @@ public class Brick : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && IsPlayerBelow(collision.gameObject))
         {
-            collision.gameObject.GetComponent<PlayerController>().isJumping = false;
+            collision.gameObject.GetComponent<PlayerController>().isJumping = true;
 
             if (collision.transform.GetComponent<PlayerController>().poweredUp)
             {
