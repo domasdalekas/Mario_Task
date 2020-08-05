@@ -255,5 +255,10 @@ public class PlayerController : MonoBehaviour
         {
             takeAwayControll = false; //give back control when it's no longer colliding with anything
         }
+     
+       private void JumpHigher()
+    {
+        //test
+    }
     }
 

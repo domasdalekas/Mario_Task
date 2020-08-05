@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
             UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
         }
 
-        if (currentTime <= 0) ;
+        if (currentTime <= 0) ; 
 			//RESTART
 
     }

@@ -1538,7 +1538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827982384556f654880019f3ac8a65ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 1416149383}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -7453,6 +7453,39 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c8845d80ddc44a9b91ff6a22c600817, type: 3}
+--- !u!1 &1416149377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6259401338590989832, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 364479253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1416149378
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416149377}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!4 &1416149383 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6259401338590989829, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 364479253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1424943234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9033368497729973634, guid: f438114d594214534a51f5eee399772e,
