@@ -34,7 +34,9 @@ public class PlayerController : MonoBehaviour
     [Header("Sounds")]
     public AudioClip smallJumpSound;
     public AudioClip bigJumpSound;
-    public AudioClip levelUp;
+    public AudioClip levelUpSound;
+    public AudioClip deathSound;
+    public AudioClip levelDownSound;
 
     private AudioSource audioSource;
 
@@ -201,19 +203,22 @@ public class PlayerController : MonoBehaviour
         public void PowerUp()
         {
             if (!poweredUp && playerAnimator.runtimeAnimatorController == smallMarioAnimatorController as RuntimeAnimatorController)
-             {
+            {
             playerAnimator.runtimeAnimatorController = bigMarioAnimatorController as RuntimeAnimatorController;
             playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
             playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
             poweredUp = true;
-            audioSource.PlayOneShot(levelUp);
+            audioSource.PlayOneShot(levelUpSound);
             }
             else if (poweredUp && playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
             {
             playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
-            audioSource.PlayOneShot(levelUp);
-        }
-
+            audioSource.PlayOneShot(levelUpSound);
+            }
+            else if (poweredUp && playerAnimator.runtimeAnimatorController == fireMario as RuntimeAnimatorController)
+            {
+            isInvulnerable = true;
+            }
 
         }
 
@@ -222,6 +227,7 @@ public class PlayerController : MonoBehaviour
         {
             if (poweredUp && !isDead && !isInvulnerable)
             {
+                audioSource.PlayOneShot(levelDownSound);
                 playerAnimator.runtimeAnimatorController = smallMarioAnimatorController as RuntimeAnimatorController;
                 playerCapsuleCollider2D.offset = new Vector2(0, 0f);
                 playerCapsuleCollider2D.size = new Vector2(1, 1);
@@ -231,6 +237,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (!isInvulnerable)
             {
+                audioSource.PlayOneShot(deathSound);
                 playerRigidbody2D.velocity = new Vector2(0, jumpVelocity);
                 playerAnimator.SetBool("dead", true);
                 playerCapsuleCollider2D.enabled = false;

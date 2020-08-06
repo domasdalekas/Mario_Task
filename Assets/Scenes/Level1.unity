@@ -837,6 +837,42 @@ PrefabInstance:
       propertyPath: fireMario
       value: 
       objectReference: {fileID: 9100000, guid: 75d3473ad4669d7428af7a7a62ade397, type: 2}
+    - target: {fileID: 6259401338590989830, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
+        type: 3}
+      propertyPath: levelUp
+      value: 
+      objectReference: {fileID: 8300000, guid: 80e583f97216ee34cbea78dffe7365ac, type: 3}
+    - target: {fileID: 6259401338590989830, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
+        type: 3}
+      propertyPath: levelUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 80e583f97216ee34cbea78dffe7365ac, type: 3}
+    - target: {fileID: 6259401338590989830, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
+        type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ba72399751ee04f4f9f4b31c10ea8d39, type: 3}
+    - target: {fileID: 6259401338590989830, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
+        type: 3}
+      propertyPath: levelDownSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eab81763a0e10b44eae3377b45eb7338, type: 3}
+    - target: {fileID: 1482458055, guid: 2fd06ae59f4d30647b4c9a3022150eb5, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c027855aa20019b4d9b9990ad37ad08e, type: 3}
+    - target: {fileID: 1482458055, guid: 2fd06ae59f4d30647b4c9a3022150eb5, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482458055, guid: 2fd06ae59f4d30647b4c9a3022150eb5, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482458055, guid: 2fd06ae59f4d30647b4c9a3022150eb5, type: 3}
+      propertyPath: m_Volume
+      value: 0.476
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fd06ae59f4d30647b4c9a3022150eb5, type: 3}
 --- !u!1001 &365173338
