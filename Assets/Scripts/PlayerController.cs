@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip levelUpSound;
     public AudioClip deathSound;
     public AudioClip levelDownSound;
+    
 
     private AudioSource audioSource;
 
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-
+        
         if (instance == null)
         {
             instance = this;
@@ -237,6 +238,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (!isInvulnerable)
             {
+            audioSource.Stop();
                 audioSource.PlayOneShot(deathSound);
                 playerRigidbody2D.velocity = new Vector2(0, jumpVelocity);
                 playerAnimator.SetBool("dead", true);
