@@ -857,6 +857,11 @@ PrefabInstance:
       propertyPath: levelDownSound
       value: 
       objectReference: {fileID: 8300000, guid: eab81763a0e10b44eae3377b45eb7338, type: 3}
+    - target: {fileID: 6259401338590989830, guid: 2fd06ae59f4d30647b4c9a3022150eb5,
+        type: 3}
+      propertyPath: additionalLifeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0fe86d086b9c29540925731b034d6f91, type: 3}
     - target: {fileID: 1482458055, guid: 2fd06ae59f4d30647b4c9a3022150eb5, type: 3}
       propertyPath: m_audioClip
       value: 
