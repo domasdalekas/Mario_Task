@@ -3572,8 +3572,13 @@ PrefabInstance:
         type: 3}
       propertyPath: prefabToAppear
       value: 
-      objectReference: {fileID: 6520921158129951751, guid: 758dc22360416478e9b8ff630036c687,
+      objectReference: {fileID: 6708699761810420347, guid: 71a46d283e4789b43b68dcbd669b5251,
         type: 3}
+    - target: {fileID: 4907265176563318442, guid: 9c8845d80ddc44a9b91ff6a22c600817,
+        type: 3}
+      propertyPath: isSecret
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 774756388567292981, guid: 9c8845d80ddc44a9b91ff6a22c600817,
         type: 3}
       propertyPath: m_Sprite

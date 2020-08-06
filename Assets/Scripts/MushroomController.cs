@@ -6,6 +6,7 @@ public class MushroomController : MonoBehaviour
 {
     public float moveSpeed = 8f;
     private ScoreManager scoreManager;
+    public bool isGreen;
 
     public bool isGoingRight = true;
     private Rigidbody2D rig;
@@ -30,9 +31,16 @@ public class MushroomController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.tag == "Player")
+        if(collision.transform.tag == "Player" && isGreen == false) // if we hit red mushroom we level up
         {
             collision.gameObject.GetComponent<PlayerController>().PowerUp();
+            scoreManager.Mushroom();
+            collision.transform.GetComponent<Rigidbody2D>().velocity -= new Vector2(rig.velocity.x, 0); //When we hit Mario, he gets mushrooms velocity. So workaround is to take it away
+            Destroy(this.gameObject);
+        }
+        if (collision.transform.tag == "Player" && isGreen == true) // if we hit green mushroom we get 1 life
+        {
+            Debug.Log("1life");
             scoreManager.Mushroom();
             collision.transform.GetComponent<Rigidbody2D>().velocity -= new Vector2(rig.velocity.x, 0); //When we hit Mario, he gets mushrooms velocity. So workaround is to take it away
             Destroy(this.gameObject);

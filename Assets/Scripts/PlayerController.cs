@@ -200,21 +200,20 @@ public class PlayerController : MonoBehaviour
         public void PowerUp()
         {
             if (!poweredUp && playerAnimator.runtimeAnimatorController == smallMarioAnimatorController as RuntimeAnimatorController)
+             {
+            playerAnimator.runtimeAnimatorController = bigMarioAnimatorController as RuntimeAnimatorController;
+            playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
+            playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
+            poweredUp = true;
+            }
+            else if (poweredUp && playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
             {
-                playerAnimator.runtimeAnimatorController = bigMarioAnimatorController as RuntimeAnimatorController;
-                playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
-                playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
-                poweredUp = true;
-            //if (poweredUp && playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
-            //{
-            //    playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
-            //}
+            playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
+            }
+
+
         }
 
-
-
-
-    }
 
         public void Die()
         {
