@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -24,8 +22,8 @@ public class ScoreManager : MonoBehaviour
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
 
-        if (currentTime <= 0) ; 
-			//RESTART
+        if (currentTime <= 0) ;
+        //RESTART
 
     }
     ////GETS///////////////////////
@@ -49,7 +47,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (goombaLastKillTimer > 0.5f) //If Goomba was killed more than 0.5 seconds ago, we don't care about it
             goombaKillSpreeCounter = 0;
-		
+
         score += (100 * (2 * goombaKillSpreeCounter)); //More killing, more score
 
         if (goombaKillSpreeCounter == 0) //Score that we add if no Goomba was killed in the last 0.5 seconds

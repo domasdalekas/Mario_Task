@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FollowingCamera : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class FollowingCamera : MonoBehaviour
 
         if (playerPositionX > transform.position.x)
         {
-            transform.position = new Vector3 (playerPositionX, transform.position.y, transform.position.z);
+            transform.position = new Vector3(playerPositionX, transform.position.y, transform.position.z);
         }
 
         float worldXConstraint = Camera.main.orthographicSize * Screen.width / Screen.height - 0.5f;

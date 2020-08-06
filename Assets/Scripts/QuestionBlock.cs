@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class QuestionBlock : MonoBehaviour
 {
-	public int timesToBeHit = 1;
+    public int timesToBeHit = 1;
     public GameObject prefabToAppear;
     public bool isSecret;
 

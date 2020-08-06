@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Goomba : MonoBehaviour
 {
@@ -34,7 +32,7 @@ public class Goomba : MonoBehaviour
         if (Mathf.Abs(transform.position.x - player.transform.position.x) < activationDistance)
             inRange = true;
 
-        if(inRange)
+        if (inRange)
         {
             if (isGoingRight)
                 rig.velocity = Vector2.Lerp(rig.velocity, new Vector2(moveSpeed, Mathf.Clamp(rig.velocity.y, -8, 15)), 0.5f); //go right
@@ -62,7 +60,7 @@ public class Goomba : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Player")
-        {   
+        {
             Rigidbody2D colRb = collision.transform.GetComponent<Rigidbody2D>();
             if (colRb.velocity.y < 0)
             {
@@ -75,7 +73,7 @@ public class Goomba : MonoBehaviour
         {
             Rigidbody2D colRB = collision.transform.GetComponent<Rigidbody2D>();
             if ((colRB.velocity.x >= 0 && rig.velocity.x < 0) || (colRB.velocity.x <= 0 && rig.velocity.x > 0))
-            rig.velocity = new Vector2(0, rig.velocity.y);
+                rig.velocity = new Vector2(0, rig.velocity.y);
             isGoingRight = !isGoingRight;
         }
     }

@@ -137,6 +137,7 @@ MonoBehaviour:
   moveSpeed: 5
   isGreen: 1
   isGoingRight: 1
+  oneUPSound: {fileID: 8300000, guid: 0fe86d086b9c29540925731b034d6f91, type: 3}
 --- !u!320 &2080702202204724511
 PlayableDirector:
   m_ObjectHideFlags: 0

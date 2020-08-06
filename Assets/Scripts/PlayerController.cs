@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -37,7 +35,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip levelUpSound;
     public AudioClip deathSound;
     public AudioClip levelDownSound;
-    
+    public AudioClip additionalLifeSound;
+
 
     private AudioSource audioSource;
 
@@ -75,7 +74,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        
+
         if (instance == null)
         {
             instance = this;
@@ -201,80 +200,86 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-        public void PowerUp()
+    public void PowerUp()
+    {
+        if (!poweredUp && playerAnimator.runtimeAnimatorController == smallMarioAnimatorController as RuntimeAnimatorController)
         {
-            if (!poweredUp && playerAnimator.runtimeAnimatorController == smallMarioAnimatorController as RuntimeAnimatorController)
-            {
             playerAnimator.runtimeAnimatorController = bigMarioAnimatorController as RuntimeAnimatorController;
             playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
             playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
             poweredUp = true;
             audioSource.PlayOneShot(levelUpSound);
-            }
-            else if (poweredUp && playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
-            {
+        }
+        else if (poweredUp && playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
+        {
             playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
             audioSource.PlayOneShot(levelUpSound);
-            }
-            else if (poweredUp && playerAnimator.runtimeAnimatorController == fireMario as RuntimeAnimatorController)
-            {
+        }
+        else if (poweredUp && playerAnimator.runtimeAnimatorController == fireMario as RuntimeAnimatorController)
+        {
             isInvulnerable = true;
-            }
-
         }
 
-
-        public void Die()
-        {
-            if (poweredUp && !isDead && !isInvulnerable)
-            {
-                audioSource.PlayOneShot(levelDownSound);
-                playerAnimator.runtimeAnimatorController = smallMarioAnimatorController as RuntimeAnimatorController;
-                playerCapsuleCollider2D.offset = new Vector2(0, 0f);
-                playerCapsuleCollider2D.size = new Vector2(1, 1);
-                poweredUp = false;
-                isInvulnerable = true;
-                invulnerabilityTimer = invulnerabilityTime;
-            }
-            else if (!isInvulnerable)
-            {
-            audioSource.Stop();
-                audioSource.PlayOneShot(deathSound);
-                playerRigidbody2D.velocity = new Vector2(0, jumpVelocity);
-                playerAnimator.SetBool("dead", true);
-                playerCapsuleCollider2D.enabled = false;
-                isDead = true;
-            }
-
-        }
-
-        void FlipSprite()
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 tempScale = transform.localScale;
-            tempScale.x *= -1;
-            transform.localScale = tempScale;
-        }
-
-        private void CheckIfStuck()
-        {
-            //Taking away users control when player is not touching the ground and not moving to any direction
-            if (!isTouchingGround && playerRigidbody2D.velocity == Vector2.zero)
-                takeAwayControll = true;
-
-            if (takeAwayControll)
-                movementInput = 0;
-
-            //if starts touching ground - give control back
-            if (isTouchingGround)
-                takeAwayControll = false;
-        }
-
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-            takeAwayControll = false; //give back control when it's no longer colliding with anything
-        }
-     
-     
     }
+
+    public void OneLifeUp()
+    {
+        Debug.Log("1UP");
+        audioSource.PlayOneShot(additionalLifeSound);
+    }
+
+
+    public void Die()
+    {
+        if (poweredUp && !isDead && !isInvulnerable)
+        {
+            audioSource.PlayOneShot(levelDownSound);
+            playerAnimator.runtimeAnimatorController = smallMarioAnimatorController as RuntimeAnimatorController;
+            playerCapsuleCollider2D.offset = new Vector2(0, 0f);
+            playerCapsuleCollider2D.size = new Vector2(1, 1);
+            poweredUp = false;
+            isInvulnerable = true;
+            invulnerabilityTimer = invulnerabilityTime;
+        }
+        else if (!isInvulnerable)
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(deathSound);
+            playerRigidbody2D.velocity = new Vector2(0, jumpVelocity);
+            playerAnimator.SetBool("dead", true);
+            playerCapsuleCollider2D.enabled = false;
+            isDead = true;
+        }
+
+    }
+
+    void FlipSprite()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 tempScale = transform.localScale;
+        tempScale.x *= -1;
+        transform.localScale = tempScale;
+    }
+
+    private void CheckIfStuck()
+    {
+        //Taking away users control when player is not touching the ground and not moving to any direction
+        if (!isTouchingGround && playerRigidbody2D.velocity == Vector2.zero)
+            takeAwayControll = true;
+
+        if (takeAwayControll)
+            movementInput = 0;
+
+        //if starts touching ground - give control back
+        if (isTouchingGround)
+            takeAwayControll = false;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        takeAwayControll = false; //give back control when it's no longer colliding with anything
+    }
+
+
+}
 

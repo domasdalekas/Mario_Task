@@ -1,18 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MushroomController : MonoBehaviour
 {
     public float moveSpeed = 8f;
     private ScoreManager scoreManager;
-    public bool isGreen;
+    public bool isGreen;// to check if the shroom is green
 
     public bool isGoingRight = true;
     private Rigidbody2D rig;
 
+   
     void Awake()
     {
+        
         rig = GetComponentInParent<Rigidbody2D>();
     }
 
@@ -31,7 +31,7 @@ public class MushroomController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.tag == "Player" && isGreen == false) // if we hit red mushroom we level up
+        if (collision.transform.tag == "Player" && isGreen == false) // if we hit red mushroom we level up
         {
             collision.gameObject.GetComponent<PlayerController>().PowerUp();
             scoreManager.Mushroom();
@@ -40,7 +40,7 @@ public class MushroomController : MonoBehaviour
         }
         if (collision.transform.tag == "Player" && isGreen == true) // if we hit green mushroom we get 1 life
         {
-            Debug.Log("1life");
+            collision.gameObject.GetComponent<PlayerController>().OneLifeUp();
             scoreManager.Mushroom();
             collision.transform.GetComponent<Rigidbody2D>().velocity -= new Vector2(rig.velocity.x, 0); //When we hit Mario, he gets mushrooms velocity. So workaround is to take it away
             Destroy(this.gameObject);
