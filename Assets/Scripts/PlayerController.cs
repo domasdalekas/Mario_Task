@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [Header("Sounds")]
     public AudioClip smallJumpSound;
     public AudioClip bigJumpSound;
+    public AudioClip levelUp;
 
     private AudioSource audioSource;
 
@@ -205,11 +206,13 @@ public class PlayerController : MonoBehaviour
             playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
             playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
             poweredUp = true;
+            audioSource.PlayOneShot(levelUp);
             }
             else if (poweredUp && playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
             {
             playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
-            }
+            audioSource.PlayOneShot(levelUp);
+        }
 
 
         }

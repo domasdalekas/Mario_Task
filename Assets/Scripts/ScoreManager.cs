@@ -23,7 +23,6 @@ public class ScoreManager : MonoBehaviour
         currentTime = currentTime - Time.deltaTime;
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
-        
 
         if (currentTime <= 0) ; 
 			//RESTART
