@@ -9,11 +9,13 @@ public class QuestionBlock : MonoBehaviour
     private Animator anim;
 
     private void Awake()
-    {
+    {    
         anim = GetComponentInParent<Animator>();
-        if (isSecret) //if it's a secret Question block
+        if (isSecret)
+        {//if it's a secret Question block
             anim.SetBool("IsSecret", true);
-
+            gameObject.GetComponent<Renderer>().enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

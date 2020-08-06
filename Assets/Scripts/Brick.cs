@@ -10,7 +10,6 @@ public class Brick : MonoBehaviour
     private Animator anim;
     ScoreManager sm;
 
-    private bool wasHit = false;
     public void DestroyBricks()
     {
         Vector3 pos = transform.position;
@@ -39,7 +38,7 @@ public class Brick : MonoBehaviour
                 DestroyBricks();
                 sm.Brick();
             }
-            else if (collision.contactCount == 1)
+            else
             {
                 anim.SetTrigger("GotHit");
                 source.PlayOneShot(brickBounce);
