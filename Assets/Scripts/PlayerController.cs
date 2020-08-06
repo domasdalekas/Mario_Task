@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+
             if (jumpTimeCounter > 0 && isJumping)
                 if (Input.GetKey(KeyCode.Space))
                 {
@@ -154,6 +155,7 @@ public class PlayerController : MonoBehaviour
                 jumpTimeCounter = 0;
             }
 
+           
             playerAnimator.SetFloat("movementSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
             playerAnimator.SetBool("touchingGround", isTouchingGround);
         }
@@ -166,6 +168,7 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
+
 
     }
 
@@ -215,12 +218,10 @@ public class PlayerController : MonoBehaviour
             playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
             audioSource.PlayOneShot(levelUpSound);
         }
-        else if (poweredUp && playerAnimator.runtimeAnimatorController == fireMario as RuntimeAnimatorController)
-        {
-            isInvulnerable = true;
-        }
+        
 
     }
+    
 
     public void OneLifeUp()
     {

@@ -66,6 +66,7 @@ TextureImporter:
     21300122: NES - Super Mario Bros - Mario & Luigi_61
     21300124: NES - Super Mario Bros - Mario & Luigi_62
     21300126: NES - Super Mario Bros - Mario & Luigi_63
+    21300128: NES - Super Mario Bros - Mario & Luigi_64
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -436,7 +437,7 @@ TextureImporter:
         width: 16
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.3562336}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -454,7 +455,7 @@ TextureImporter:
         x: 97
         y: 526
         width: 16
-        height: 30
+        height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1423,6 +1424,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0d1ee49b4528b3e49bb0502cdd942877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Super Mario Bros - Mario & Luigi_64
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 567
+        width: 14
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0412aab108303ff44bd2dbe5ac49f192
       vertices: []
       indices: 
       edges: []
