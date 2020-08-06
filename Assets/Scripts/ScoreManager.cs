@@ -23,10 +23,7 @@ public class ScoreManager : MonoBehaviour
         currentTime = currentTime - Time.deltaTime;
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
-        if (score > 2000)
-        {
-            UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.AccessViolation);
-        }
+        
 
         if (currentTime <= 0) ; 
 			//RESTART
