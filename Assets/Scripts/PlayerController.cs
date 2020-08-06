@@ -205,16 +205,16 @@ public class PlayerController : MonoBehaviour
                 playerCapsuleCollider2D.offset = new Vector2(0, 0.5f);
                 playerCapsuleCollider2D.size = new Vector2(0.9f, 2);
                 poweredUp = true;
-            
-            }  
-        
             //if (poweredUp && playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
             //{
-            //playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
+            //    playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
             //}
-
-
         }
+
+
+
+
+    }
 
         public void Die()
         {
