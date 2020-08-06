@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MarioAnimatorController
+  m_Name: BigMarioAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: movementSpeed
@@ -245,7 +245,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3c393d52996700e42893de76cf31cdee, type: 2}
+  m_Motion: {fileID: 7400000, guid: 80f14ba696ffec94aab673d26d42a464, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -272,7 +272,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9c1897482c94c6746857b8f7ec34d8ff, type: 2}
+  m_Motion: {fileID: 7400000, guid: d1f476cf4c3ae104f9e7bafd410741bb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -300,7 +300,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 766293633d4281c4cbf3f697b37db108, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6716649f31c97414290e9962bbd75bd7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -327,7 +327,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 617c493fe779452478c464f7815c5fee, type: 2}
+  m_Motion: {fileID: 7400000, guid: 25edf272668263348837e2909db78f81, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
