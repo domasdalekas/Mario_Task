@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class PlayerController : MonoBehaviour
 {
@@ -67,9 +68,14 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer playerSpriteRenderer;
 
+    public  PlayableDirector timeline;
+
     private PlayerController instance = null;
 
-    private bool takeAwayControll = false; //taking away control so Mario would not stick to the side
+    public float groundPosition;
+
+    public bool takeAwayControll = false; //taking away control so Mario would not stick to the side
+    public bool isGameFinished = false;
 
     private void Awake()
     {
@@ -94,19 +100,25 @@ public class PlayerController : MonoBehaviour
         playerCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         playerAnimator = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
 
     void FixedUpdate()
     {
+      
+        
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
         isTouchingGround = (hit.collider != null) ? true : false;
 
         movementInput = Input.GetAxis("Horizontal");
 
         CheckIfStuck(); //Checks if Mario is trying to walk into the wall and get stuck
-
-        if (!isDead)
+        if(isDead || takeAwayControll|| isGameFinished) {
+            playerAnimator.SetBool("touchingGround", isTouchingGround);
+            Debug.Log(playerSpriteRenderer.sprite.name);
+        }
+        else  
         {
             if ((playerRigidbody2D.velocity.x > 0 && !isFacingRight) || (playerRigidbody2D.velocity.x < 0 && isFacingRight))
             {
@@ -202,6 +214,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    public void OnGameFinished()
+         {
+        playerAnimator.SetBool("gameFinished", true);
+    }
 
     public void PowerUp()
     {
@@ -221,8 +237,11 @@ public class PlayerController : MonoBehaviour
         
 
     }
-    
-
+    public void GrabFlag(float x, float y)
+    {
+        timeline.Play();
+    }
+   
     public void OneLifeUp()
     {
         Debug.Log("1UP");
@@ -253,6 +272,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+   
 
     void FlipSprite()
     {
@@ -274,6 +294,10 @@ public class PlayerController : MonoBehaviour
         //if starts touching ground - give control back
         if (isTouchingGround)
             takeAwayControll = false;
+    }
+    public float GetGroundPosition()
+    {
+       return groundPosition = playerRigidbody2D.position.y;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
