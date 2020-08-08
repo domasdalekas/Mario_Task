@@ -102,8 +102,6 @@ public class PlayerController : MonoBehaviour
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         
     }
-
-
     void FixedUpdate()
     {
       

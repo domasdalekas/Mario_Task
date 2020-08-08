@@ -44,5 +44,5 @@ public class Flag : MonoBehaviour
             //t.RunToCastle();
         }
     }
-   
+    
 }

@@ -7,6 +7,7 @@ public class ScoreCounter : MonoBehaviour
 {
     public ScoreManager scoreManager;
     public Text scoretext;
+    public Text coinsText;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,8 @@ public class ScoreCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int score= scoreManager.GetScore();
+        int score = scoreManager.GetScore();
         scoretext.text = score.ToString();
+        coinsText.text = scoreManager.GetCoins().ToString();
     }
 }
