@@ -105,18 +105,13 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
       
-        
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
         isTouchingGround = (hit.collider != null) ? true : false;
 
         movementInput = Input.GetAxis("Horizontal");
        
         CheckIfStuck(); //Checks if Mario is trying to walk into the wall and get stuck
-        if(isDead || takeAwayControll || isGameFinished) {
-            playerAnimator.SetBool("touchingGround", isTouchingGround);
-           
-        }
-        else  
+        if (!isDead)
         {
             if ((playerRigidbody2D.velocity.x > 0 && !isFacingRight) || (playerRigidbody2D.velocity.x < 0 && isFacingRight))
             {
@@ -238,11 +233,6 @@ public class PlayerController : MonoBehaviour
         
 
     }
-    public void GrabFlag(float x, float y)
-    {
-        timeline.Play();
-    }
-   
     public void OneLifeUp()
     {
         Debug.Log("1UP");
