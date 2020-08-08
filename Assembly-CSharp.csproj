@@ -66,13 +66,17 @@
     <Compile Include="Assets\Animations\Question Block\StateMachineBehaviour\QuestionBlock_Deactivated.cs" />
     <Compile Include="Assets\Scripts\Brick.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
+    <Compile Include="Assets\Scripts\CoinsCount.cs" />
     <Compile Include="Assets\Scripts\Flag.cs" />
     <Compile Include="Assets\Scripts\FollowingCamera.cs" />
     <Compile Include="Assets\Scripts\Goomba.cs" />
+    <Compile Include="Assets\Scripts\InvisibleBoxScript.cs" />
     <Compile Include="Assets\Scripts\MushroomController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\QuestionBlock.cs" />
+    <Compile Include="Assets\Scripts\ScoreCounter.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\TimeCounter.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/MarioTask/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

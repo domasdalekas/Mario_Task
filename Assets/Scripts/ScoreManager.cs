@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -22,8 +23,8 @@ public class ScoreManager : MonoBehaviour
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
 
-        if (currentTime <= 0) ;
-        //RESTART
+        if (currentTime <= 0)
+        SceneManager.LoadScene(1);
 
     }
     ////GETS///////////////////////

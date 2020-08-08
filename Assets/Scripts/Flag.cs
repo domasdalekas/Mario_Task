@@ -24,7 +24,7 @@ public class Flag : MonoBehaviour
             var t = collision.gameObject.GetComponent<PlayerController>();
             t.isGameFinished = true;
             
-            // animationExecuted = true;
+          
             var mario = collision.contacts[0];
             float x = mario.point.x;
             float y = mario.point.y;
@@ -32,15 +32,17 @@ public class Flag : MonoBehaviour
            
             timeline.Play();
           
-          
+            var rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
+           
             t.OnGameFinished();
-            StartCoroutine(TimeWait());
-            t.RunToCastle();
+            
+            //t.transform.position = new Vector2(x, y - 0.2f);
+            //rigidbody.transform.position = Vector2.Lerp(new Vector2(x, y), new Vector2(x, groundPosition), penki);
+
+            //rigidbody.transform.position = Vector2.MoveTowards(new Vector2(x, y), new Vector2(x, groundPosition), (float)timeline.duration * 0.01f);
+
+            //t.RunToCastle();
         }
     }
-    IEnumerator TimeWait()
-    {
-        yield return new WaitForSeconds(2);
-        
-    }
+   
 }

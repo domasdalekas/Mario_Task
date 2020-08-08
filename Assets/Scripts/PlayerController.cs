@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         isTouchingGround = (hit.collider != null) ? true : false;
 
         movementInput = Input.GetAxis("Horizontal");
-
+       
         CheckIfStuck(); //Checks if Mario is trying to walk into the wall and get stuck
         if(isDead || takeAwayControll || isGameFinished) {
             playerAnimator.SetBool("touchingGround", isTouchingGround);
@@ -180,8 +180,6 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
-
-
     }
 
 
@@ -215,14 +213,13 @@ public class PlayerController : MonoBehaviour
         }
     }
     public void OnGameFinished()
-         {
+    {
         playerAnimator.SetBool("gameFinished", true);
+        isGameFinished = true;
     }
     public void RunToCastle()
     {
         FlipSprite();
-        
-        //playerAnimator.SetFloat("movementSpeed", 0.6f);
     }
 
     public void PowerUp()
