@@ -7,14 +7,7 @@ public class Flag : MonoBehaviour
 {
     public PlayableDirector timeline;
     private bool animationExecuted = false;
-    
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+ 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         

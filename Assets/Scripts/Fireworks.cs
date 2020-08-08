@@ -6,17 +6,6 @@ using UnityEngine.Playables;
 public class Fireworks : MonoBehaviour
 {
     public PlayableDirector timeline;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void PlayFireworks()
     {
         StartCoroutine(ShootFireworks());
