@@ -24,8 +24,8 @@ public class Flag : MonoBehaviour
             
             rigidbody.isKinematic = true;
             t.MovePlayerDownPole();
-            FindObjectOfType<MoveFlag>().MoveFlagUp();
-            FindObjectOfType<Fireworks>().PlayFireworks();
+            //FindObjectOfType<MoveFlag>().MoveFlagUp();
+            //FindObjectOfType<Fireworks>().PlayFireworks();
                
         }
     }
