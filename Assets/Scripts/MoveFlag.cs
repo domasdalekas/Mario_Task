@@ -14,7 +14,7 @@ public class MoveFlag : MonoBehaviour
     {
         while (transform.position.y < 2.3f)
         {
-            Debug.Log(transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.4f));
+            transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.4f);
             yield return new WaitForSeconds(1f);
         }
        

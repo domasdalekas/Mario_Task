@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -238,7 +240,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("1UP");
         audioSource.PlayOneShot(additionalLifeSound);
     }
-
+    public void MovePlayerDownPole()
+    {
+        StartCoroutine(MovePlayerDownPoleEnum());
+    }
 
     public void Die()
     {
@@ -296,7 +301,18 @@ public class PlayerController : MonoBehaviour
     {
         takeAwayControll = false; //give back control when it's no longer colliding with anything
     }
-
+    
+    IEnumerator MovePlayerDownPoleEnum()
+    {
+      
+        while (transform.position.y == -1.515f)
+        {
+            Debug.Log(gameObject.transform.position.y);
+            yield return new WaitForSeconds(1f);
+            //Debug.Log(transform.position = new Vector2(transform.position.x, transform.position.y - 0.4f));
+            //yield return new WaitForSeconds(1f);
+        }
+    }
 
 }
 
