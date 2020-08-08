@@ -35,7 +35,8 @@ public class Flag : MonoBehaviour
             var rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
            
             t.OnGameFinished();
-            
+            FindObjectOfType<MoveFlag>().MoveFlagUp();
+               
             //t.transform.position = new Vector2(x, y - 0.2f);
             //rigidbody.transform.position = Vector2.Lerp(new Vector2(x, y), new Vector2(x, groundPosition), penki);
 
