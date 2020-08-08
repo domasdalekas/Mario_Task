@@ -260,6 +260,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("dead", true);
             playerCapsuleCollider2D.enabled = false;
             isDead = true;
+            FindObjectOfType<GameManager>().EndGame();
         }
 
     }

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Animations\Question Block\StateMachineBehaviour\QuestionBlock_Deactivated.cs" />
+    <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\Scripts\Brick.cs" />
     <Compile Include="Assets\Scripts\Coin.cs" />
     <Compile Include="Assets\Scripts\Flag.cs" />

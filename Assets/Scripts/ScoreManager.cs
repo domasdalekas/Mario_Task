@@ -25,8 +25,8 @@ public class ScoreManager : MonoBehaviour
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
 
-        if (currentTime <= 0) ;
-        //SceneManager.LoadScene(1);
+        if (currentTime <= 0) 
+        FindObjectOfType<GameManager>().EndGame();
 
     }
     ////GETS///////////////////////
