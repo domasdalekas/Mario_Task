@@ -5,16 +5,18 @@ using UnityEngine;
 public class MoveFlag : MonoBehaviour
 {
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+  
     public void MoveFlagUp()
     {
-        while (transform.position.y < 2f)
-        {
-            Debug.Log(transform.position = new Vector2(gameObject.transform.position.x, 0.5f));
-        }
+        StartCoroutine(Move());
      }
+    IEnumerator Move()
+    {
+        while (transform.position.y < 2.3f)
+        {
+            Debug.Log(transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.4f));
+            yield return new WaitForSeconds(1f);
+        }
+       
+    }
 }
