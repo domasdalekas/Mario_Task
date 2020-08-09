@@ -240,11 +240,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("1UP");
         audioSource.PlayOneShot(additionalLifeSound);
     }
-    public void MovePlayerDownPole()
-    {
-        StartCoroutine(MovePlayerDownPoleEnum());
-    }
-
     public void Die()
     {
         if (poweredUp && !isDead && !isInvulnerable)
@@ -269,7 +264,14 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag=="FlagPole")
+        {
+            StartCoroutine(MovePlayerDownPoleEnum());
+            
+        }
+    }
 
     void FlipSprite()
     {
@@ -302,16 +304,19 @@ public class PlayerController : MonoBehaviour
         takeAwayControll = false; //give back control when it's no longer colliding with anything
     }
     
+
     IEnumerator MovePlayerDownPoleEnum()
     {
-      
-        while (transform.position.y == -1.515f)
+        while (transform.position.y >-1.3f)
         {
-            Debug.Log(gameObject.transform.position.y);
-            yield return new WaitForSeconds(1f);
-            //Debug.Log(transform.position = new Vector2(transform.position.x, transform.position.y - 0.4f));
-            //yield return new WaitForSeconds(1f);
+            transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
+            yield return new WaitForSeconds(0.3f);
         }
+        transform.position = new Vector2(gameObject.transform.position.x + 0.7f, gameObject.transform.position.y);
+        FlipSprite();
+        yield return new WaitForSeconds(0.3f);
+        FlipSprite();
+        timeline.Play();
     }
 
 }

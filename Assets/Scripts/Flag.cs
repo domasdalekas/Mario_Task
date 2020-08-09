@@ -11,7 +11,7 @@ public class Flag : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.transform.tag == "Player" && !animationExecuted)
+        if (collision.transform.tag == "Player")
         {
             var t = collision.gameObject.GetComponent<PlayerController>();
             var spriteControl = collision.gameObject.GetComponent<SpriteRenderer>();
@@ -23,10 +23,9 @@ public class Flag : MonoBehaviour
             t.OnGameFinished();
             
             rigidbody.isKinematic = true;
-            t.MovePlayerDownPole();
+            //t.MovePlayerDownPole();
             //FindObjectOfType<MoveFlag>().MoveFlagUp();
-            //FindObjectOfType<Fireworks>().PlayFireworks();
-               
+          
         }
     }
    
