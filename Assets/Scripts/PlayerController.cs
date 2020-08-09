@@ -339,11 +339,13 @@ public class PlayerController : MonoBehaviour
     {
         while (transform.position.x < 124f)
         {
-            playerRigidbody2D.AddForce(new Vector2(transform.position.x * 7f, transform.position.y));
+            playerRigidbody2D.AddForce(new Vector2(transform.position.x * 9f, transform.position.y));
             yield return new WaitForSeconds(0.1f);
         }
         playerSpriteRenderer.enabled = false;
         FindObjectOfType<MoveFlag>().MoveFlagUp();
+        yield return new WaitForSeconds(1);
+        FindObjectOfType<Fireworks>().PlayFireworks();
     }
 
 }
