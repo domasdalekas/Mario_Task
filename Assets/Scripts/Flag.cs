@@ -18,15 +18,11 @@ public class Flag : MonoBehaviour
         {
             
             var t = collision.gameObject.GetComponent<PlayerController>();
-            var spriteControl = collision.gameObject.GetComponent<SpriteRenderer>();
             t.isGameFinished = true;
-            var mario = collision.contacts[0];
-            float y = mario.point.y;
             timeline.Play();
-            var rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
             t.OnGameFinished();
             box.enabled = false;
-            //FindObjectOfType<MoveFlag>().MoveFlagUp();
+            
 
         }
     }

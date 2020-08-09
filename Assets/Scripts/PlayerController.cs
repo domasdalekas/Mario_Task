@@ -331,8 +331,8 @@ public class PlayerController : MonoBehaviour
            transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
            yield return new WaitForSeconds(0.3f);
         }
-        transform.position = new Vector2(gameObject.transform.position.x + 0.7f, gameObject.transform.position.y);
         FlipSprite();
+        transform.position = new Vector2(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y);
         playerRigidbody2D.isKinematic = false;
     }
     IEnumerator MovePlayerTowardsCastle()
