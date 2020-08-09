@@ -73,11 +73,13 @@ public class PlayerController : MonoBehaviour
     public  PlayableDirector timeline;
 
     private PlayerController instance = null;
+    
 
     public float groundPosition;
 
     public bool takeAwayControll = false; //taking away control so Mario would not stick to the side
     public bool isGameFinished = false;
+    public bool playTimeline = false;
 
     private void Awake()
     {
@@ -175,6 +177,11 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
+        if (transform.position.x <118f && transform.position.y <-1.5f && isGameFinished == true)
+        {
+            playTimeline = true;
+            
+        }
     }
 
 
@@ -212,11 +219,21 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("gameFinished", true);
         isGameFinished = true;
     }
-    public void RunToCastle()
+    public void TimelinePlay()
     {
-        FlipSprite();
+        if(playTimeline==true)
+        {
+            playerAnimator.SetBool("touchingGround", true);
+            playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
+            FlipSprite();
+            playTimeline = false;
+            timeline.Play();
+            while(transform.position.x<124f)
+            {
+                playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
+            }
+        }
     }
-
     public void PowerUp()
     {
         if (!poweredUp && playerAnimator.runtimeAnimatorController == smallMarioAnimatorController as RuntimeAnimatorController)
@@ -266,13 +283,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag=="FlagPole")
+        if (collision.transform.tag == "FlagPole")
         {
             StartCoroutine(MovePlayerDownPoleEnum());
-            
         }
     }
-
     void FlipSprite()
     {
         isFacingRight = !isFacingRight;
@@ -307,6 +322,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MovePlayerDownPoleEnum()
     {
+        playerRigidbody2D.isKinematic = true;
         while (transform.position.y >-1.3f)
         {
             transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
@@ -314,9 +330,11 @@ public class PlayerController : MonoBehaviour
         }
         transform.position = new Vector2(gameObject.transform.position.x + 0.7f, gameObject.transform.position.y);
         FlipSprite();
-        yield return new WaitForSeconds(0.3f);
-        FlipSprite();
-        timeline.Play();
+        //yield return new WaitForSeconds(2f);
+        playerRigidbody2D.isKinematic = false;
+        playerAnimator.SetBool("touchingGround", true);
+        //yield return new WaitForSeconds(2f);
+        //timeline.Play();
     }
 
 }

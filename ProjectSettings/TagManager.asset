@@ -16,6 +16,7 @@ TagManager:
   - Starman
   - ScoreManager
   - Tiles
+  - FlagPole
   layers:
   - Default
   - TransparentFX

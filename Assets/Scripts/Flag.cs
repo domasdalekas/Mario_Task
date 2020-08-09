@@ -6,13 +6,17 @@ using UnityEngine.Playables;
 public class Flag : MonoBehaviour
 {
     public PlayableDirector timeline;
-    private bool animationExecuted = false;
- 
+    public BoxCollider2D box;
+    private void FixedUpdate()
+    {
+        FindObjectOfType<PlayerController>().TimelinePlay();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
         if (collision.transform.tag == "Player")
         {
+            
             var t = collision.gameObject.GetComponent<PlayerController>();
             var spriteControl = collision.gameObject.GetComponent<SpriteRenderer>();
             t.isGameFinished = true;
@@ -21,11 +25,9 @@ public class Flag : MonoBehaviour
             timeline.Play();
             var rigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
             t.OnGameFinished();
-            
-            rigidbody.isKinematic = true;
-            //t.MovePlayerDownPole();
+            box.enabled = false;
             //FindObjectOfType<MoveFlag>().MoveFlagUp();
-          
+
         }
     }
    
