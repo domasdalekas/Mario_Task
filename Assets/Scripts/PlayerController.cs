@@ -327,24 +327,20 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2D.isKinematic = true;
         while (transform.position.y >-1.3f)
         {
-            transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
-            yield return new WaitForSeconds(0.3f);
+           
+           transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
+           yield return new WaitForSeconds(0.3f);
         }
         transform.position = new Vector2(gameObject.transform.position.x + 0.7f, gameObject.transform.position.y);
         FlipSprite();
-        //yield return new WaitForSeconds(2f);
         playerRigidbody2D.isKinematic = false;
-        playerAnimator.SetBool("touchingGround", true);
-        //yield return new WaitForSeconds(2f);
-        //timeline.Play();
     }
     IEnumerator MovePlayerTowardsCastle()
     {
         while (transform.position.x < 124f)
         {
-            transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
-            
-            yield return new WaitForSeconds(0.3f);
+            playerRigidbody2D.AddForce(new Vector2(transform.position.x * 7f, transform.position.y));
+            yield return new WaitForSeconds(0.1f);
         }
         playerSpriteRenderer.enabled = false;
         FindObjectOfType<MoveFlag>().MoveFlagUp();
