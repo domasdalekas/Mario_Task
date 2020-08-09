@@ -183,10 +183,9 @@ public class PlayerController : MonoBehaviour
         }
         if (transform.position.x < 124f && isGameFinished == true && playTimeline==true)
         {
-            while(transform.position.x < 124f)
-            {
-                playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
-            }
+            
+          StartCoroutine(MovePlayerTowardsCastle());
+            
         }
     }
 
@@ -233,7 +232,7 @@ public class PlayerController : MonoBehaviour
             playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
             FlipSprite();
             playTimeline = false;
-            timeline.Play();
+            
             
         }
     }
@@ -338,6 +337,17 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("touchingGround", true);
         //yield return new WaitForSeconds(2f);
         //timeline.Play();
+    }
+    IEnumerator MovePlayerTowardsCastle()
+    {
+        while (transform.position.x < 124f)
+        {
+            transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
+            
+            yield return new WaitForSeconds(0.3f);
+        }
+        playerSpriteRenderer.enabled = false;
+        FindObjectOfType<MoveFlag>().MoveFlagUp();
     }
 
 }
