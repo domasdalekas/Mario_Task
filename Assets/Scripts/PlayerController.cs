@@ -179,8 +179,14 @@ public class PlayerController : MonoBehaviour
         }
         if (transform.position.x <118f && transform.position.y <-1.5f && isGameFinished == true)
         {
-            playTimeline = true;
-            
+            playTimeline = true; 
+        }
+        if (transform.position.x < 124f && isGameFinished == true && playTimeline==true)
+        {
+            while(transform.position.x < 124f)
+            {
+                playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
+            }
         }
     }
 
@@ -228,11 +234,7 @@ public class PlayerController : MonoBehaviour
             FlipSprite();
             playTimeline = false;
             timeline.Play();
-            while (transform.position.x < 124f)
-            {
-                Debug.Log("Not there yet");
-                //playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
-            }
+            
         }
     }
     public void PowerUp()
