@@ -228,9 +228,10 @@ public class PlayerController : MonoBehaviour
             FlipSprite();
             playTimeline = false;
             timeline.Play();
-            while(transform.position.x<124f)
+            while (transform.position.x < 124f)
             {
-                playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
+                Debug.Log("Not there yet");
+                //playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
             }
         }
     }
