@@ -7,9 +7,11 @@ public class InvisibleBoxScript : MonoBehaviour
     SpriteRenderer rend;
     BoxCollider2D collider2D;
     PlayerController playerController;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(false);
         rend = this.gameObject.GetComponent<SpriteRenderer>();
         collider2D = gameObject.GetComponent<BoxCollider2D>();
         rend.enabled = false;
@@ -19,7 +21,10 @@ public class InvisibleBoxScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        if (IsPlayerBelow(player))
+        {
+            gameObject.SetActive(true);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
