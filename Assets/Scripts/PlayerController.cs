@@ -183,9 +183,13 @@ public class PlayerController : MonoBehaviour
         }
         if (transform.position.x < 124f && isGameFinished == true && playTimeline==true)
         {
-            
           StartCoroutine(MovePlayerTowardsCastle());
-            
+        }
+        if (playerRigidbody2D.transform.position.y < -5 && !isDead)
+        {
+            audioSource.PlayOneShot(deathSound);
+            FindObjectOfType<GameManager>().EndGame();
+            isDead = true;
         }
     }
 

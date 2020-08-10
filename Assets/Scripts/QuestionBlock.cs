@@ -9,28 +9,31 @@ public class QuestionBlock : MonoBehaviour
     SpriteRenderer sprite;
     BoxCollider2D box;
     public LayerMask playerMask;
+    SpriteRenderer spriteParent;
+    public GameObject player;
 
     private void Awake()
     {    
         anim = GetComponentInParent<Animator>();
-        sprite = GetComponentInParent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         box = GetComponent<BoxCollider2D>();
+        spriteParent = GetComponentInParent<SpriteRenderer>();
         if (isSecret)
         {//if it's a secret Question block
             anim.SetBool("IsSecret", true);
             box.enabled = false;
             sprite.enabled = false;
+            spriteParent.enabled = false;
         }
     }
     private void FixedUpdate()
     {
         if (isSecret)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10f, playerMask);
-            if (hit.collider != null)
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.05f, playerMask);
+            if (hit.collider != null && IsPlayerBelow(player))
             {
                 box.enabled = true;
-                Debug.Log("player below");
             }
         }
     }
@@ -41,10 +44,16 @@ public class QuestionBlock : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player" && IsPlayerBelow(collision.gameObject))
             {
+                if (isSecret)
+                {
+                    sprite.enabled = true;
+                    spriteParent.enabled = true;
+                }
                 collision.gameObject.GetComponent<PlayerController>().isJumping = false; //Mario can't jump higher
                 Instantiate(prefabToAppear, transform.parent.transform.position, Quaternion.identity); //instantiate other obj
                 timesToBeHit--;
                 anim.SetTrigger("GotHit"); //hit animation
+                
             }
         }
 
