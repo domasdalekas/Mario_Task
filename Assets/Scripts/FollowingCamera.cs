@@ -2,7 +2,6 @@
 
 public class FollowingCamera : MonoBehaviour
 {
-
     public Transform playerTransform;
 
     void Update()

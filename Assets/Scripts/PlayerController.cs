@@ -73,10 +73,9 @@ public class PlayerController : MonoBehaviour
 
     private PlayerController instance = null;
 
-
     public float groundPosition;
 
-    public bool takeAwayControll = false; //taking away control so Mario would not stick to the side
+    public bool takeAwayControl = false; //taking away control so Mario would not stick to the side
     public bool isGameFinished = false;
     public bool playTimeline = false;
 
@@ -93,6 +92,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
@@ -105,7 +105,6 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
         isTouchingGround = (hit.collider != null) ? true : false;
 
@@ -144,7 +143,6 @@ public class PlayerController : MonoBehaviour
                     jumpTimeCounter = jumpTime;
                 }
             }
-
 
             if (jumpTimeCounter > 0 && isJumping)
                 if (Input.GetKey(KeyCode.Space))
@@ -198,7 +196,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         if (isInvulnerable)
@@ -212,13 +209,11 @@ public class PlayerController : MonoBehaviour
                 newAlpha = 0.5f;
             }
 
-
             if (invulnerabilityTimer < 0)
             {
                 isInvulnerable = false;
                 newAlpha = 1f;
             }
-
 
             playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r, playerSpriteRenderer.color.g, playerSpriteRenderer.color.b, newAlpha);
 
@@ -242,10 +237,9 @@ public class PlayerController : MonoBehaviour
             playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
             FlipSprite();
             playTimeline = false;
-
-
         }
     }
+
     public void PowerUp()
     {
         if (!poweredUp && playerAnimator.runtimeAnimatorController == smallMarioAnimatorController as RuntimeAnimatorController)
@@ -262,11 +256,13 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(levelUpSound);
         }
     }
+
     public void OneLifeUp()
     {
         Debug.Log("1UP");
         audioSource.PlayOneShot(additionalLifeSound);
     }
+
     public void Die()
     {
         if (poweredUp && !isDead && !isInvulnerable)
@@ -290,6 +286,7 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<GameManager>().EndGame();
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "FlagPole")
@@ -309,14 +306,14 @@ public class PlayerController : MonoBehaviour
     {
         //Taking away users control when player is not touching the ground and not moving to any direction
         if (!isTouchingGround && playerRigidbody2D.velocity == Vector2.zero)
-            takeAwayControll = true;
+            takeAwayControl = true;
 
-        if (takeAwayControll)
+        if (takeAwayControl)
             movementInput = 0;
 
         //if starts touching ground - give control back
         if (isTouchingGround)
-            takeAwayControll = false;
+            takeAwayControl = false;
     }
     public float GetGroundPosition()
     {
@@ -325,7 +322,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        takeAwayControll = false; //give back control when it's no longer colliding with anything
+        takeAwayControl = false; //give back control when it's no longer colliding with anything
     }
     IEnumerator MovePlayerDownPoleEnum()
     {

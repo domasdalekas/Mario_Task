@@ -12,7 +12,6 @@ public class MushroomController : MonoBehaviour
 
     void Awake()
     {
-
         rig = GetComponentInParent<Rigidbody2D>();
     }
 
