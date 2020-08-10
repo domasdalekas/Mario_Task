@@ -6,19 +6,34 @@ public class QuestionBlock : MonoBehaviour
     public GameObject prefabToAppear;
     public bool isSecret;
     private Animator anim;
-    
+    SpriteRenderer sprite;
+    BoxCollider2D box;
+    public LayerMask playerMask;
 
     private void Awake()
     {    
         anim = GetComponentInParent<Animator>();
-       
+        sprite = GetComponentInParent<SpriteRenderer>();
+        box = GetComponent<BoxCollider2D>();
         if (isSecret)
         {//if it's a secret Question block
             anim.SetBool("IsSecret", true);
-            
+            box.enabled = false;
+            sprite.enabled = false;
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (isSecret)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10f, playerMask);
+            if (hit.collider != null)
+            {
+                box.enabled = true;
+                Debug.Log("player below");
+            }
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         

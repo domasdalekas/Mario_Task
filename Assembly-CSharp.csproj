@@ -71,7 +71,6 @@
     <Compile Include="Assets\Scripts\FollowingCamera.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Goomba.cs" />
-    <Compile Include="Assets\Scripts\InvisibleBoxScript.cs" />
     <Compile Include="Assets\Scripts\MoveFlag.cs" />
     <Compile Include="Assets\Scripts\MushroomController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
