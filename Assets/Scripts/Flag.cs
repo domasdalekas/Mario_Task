@@ -18,7 +18,7 @@ public class Flag : MonoBehaviour
 
             var t = collision.gameObject.GetComponent<PlayerController>();
             t.isGameFinished = true;
-            t.takeAwayControll = true;
+            //t.takeAwayControll = true;
             timeline.Play();
             t.OnGameFinished();
             box.enabled = false;

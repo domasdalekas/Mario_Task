@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         movementInput = Input.GetAxis("Horizontal");
 
         CheckIfStuck(); //Checks if Mario is trying to walk into the wall and get stuck
-        if (!isDead)
+        if (!isDead && !isGameFinished)
         {
             if ((playerRigidbody2D.velocity.x > 0 && !isFacingRight) || (playerRigidbody2D.velocity.x < 0 && isFacingRight))
             {
@@ -230,6 +230,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnGameFinished()
     {
+        playerRigidbody2D.velocity = Vector2.zero;
         playerAnimator.SetBool("gameFinished", true);
         isGameFinished = true;
     }
@@ -331,8 +332,17 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2D.isKinematic = true;
         while (transform.position.y > -1.3f)
         {
+            float translation;
+            if (transform.position.y -0.4f > -1.3f )
+            {
+                translation = 0.4f;
+            }
+            else 
+            {
+                translation = transform.position.y - (-1.3f);
+            }
+            transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - translation);
 
-            transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
             yield return new WaitForSeconds(0.3f);
         }
         FlipSprite();
