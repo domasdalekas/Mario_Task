@@ -167,6 +167,11 @@ public class PlayerController : MonoBehaviour
            
             playerAnimator.SetFloat("movementSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
             playerAnimator.SetBool("touchingGround", isTouchingGround);
+            if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            {
+                playerAnimator.SetBool("marioDucking", true);
+            }
+            else playerAnimator.SetBool("marioDucking", false);
         }
 
         if (movementInput > 0 && !isFacingRight)
