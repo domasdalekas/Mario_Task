@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -25,8 +22,8 @@ public class ScoreManager : MonoBehaviour
         goombaLastKillTimer = goombaLastKillTimer + Time.deltaTime;
 
 
-        if (currentTime <= 0) 
-        FindObjectOfType<GameManager>().EndGame();
+        if (currentTime <= 0)
+            FindObjectOfType<GameManager>().EndGame();
 
     }
     ////GETS///////////////////////
@@ -75,5 +72,5 @@ public class ScoreManager : MonoBehaviour
     {
         score += 50;
     }
-   
+
 }

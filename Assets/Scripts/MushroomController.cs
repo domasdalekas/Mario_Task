@@ -9,10 +9,10 @@ public class MushroomController : MonoBehaviour
     public bool isGoingRight = true;
     private Rigidbody2D rig;
 
-   
+
     void Awake()
     {
-        
+
         rig = GetComponentInParent<Rigidbody2D>();
     }
 

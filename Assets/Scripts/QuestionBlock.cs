@@ -13,13 +13,13 @@ public class QuestionBlock : MonoBehaviour
     public GameObject player;
 
     private void Awake()
-    {    
+    {
         anim = GetComponentInParent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         box = GetComponent<BoxCollider2D>();
         spriteParent = GetComponentInParent<SpriteRenderer>();
-        if (isSecret)
-        {//if it's a secret Question block
+        if (isSecret) //if it's a secret Question block
+        {                               
             anim.SetBool("IsSecret", true);
             box.enabled = false;
             sprite.enabled = false;
@@ -39,7 +39,6 @@ public class QuestionBlock : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
         if (timesToBeHit > 0)
         {
             if (collision.gameObject.tag == "Player" && IsPlayerBelow(collision.gameObject))
@@ -53,7 +52,7 @@ public class QuestionBlock : MonoBehaviour
                 Instantiate(prefabToAppear, transform.parent.transform.position, Quaternion.identity); //instantiate other obj
                 timesToBeHit--;
                 anim.SetTrigger("GotHit"); //hit animation
-                
+
             }
         }
 
@@ -62,7 +61,7 @@ public class QuestionBlock : MonoBehaviour
             anim.SetBool("EmptyBlock", true); //change sprite in animator
         }
     }
-    
+
     private bool IsPlayerBelow(GameObject go)
     {
         if ((go.transform.position.y + 1.4f < this.transform.position.y)) //if Mario is powered-up

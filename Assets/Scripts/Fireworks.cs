@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class Fireworks : MonoBehaviour
 {
@@ -16,7 +14,6 @@ public class Fireworks : MonoBehaviour
     public void PlayFireworks()
     {
         StartCoroutine(ShootFireworks());
-        
     }
     IEnumerator ShootFireworks()
     {
@@ -29,8 +26,8 @@ public class Fireworks : MonoBehaviour
         firework3.GetComponent<SpriteRenderer>().enabled = true;
         Instantiate(firework3);
         yield return new WaitForSeconds(1);
-        
+
     }
-    
-   
+
+
 }

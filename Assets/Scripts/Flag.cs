@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Playables;
 
 public class Flag : MonoBehaviour
@@ -14,20 +12,18 @@ public class Flag : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
         if (collision.transform.tag == "Player")
         {
-            
+
             var t = collision.gameObject.GetComponent<PlayerController>();
             t.isGameFinished = true;
             t.takeAwayControll = true;
             timeline.Play();
             t.OnGameFinished();
             box.enabled = false;
-            
-
         }
     }
-   
-    
+
+
 }

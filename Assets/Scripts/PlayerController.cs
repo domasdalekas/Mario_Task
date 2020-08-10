@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Playables;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -70,10 +69,10 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer playerSpriteRenderer;
 
-    public  PlayableDirector timeline;
+    public PlayableDirector timeline;
 
     private PlayerController instance = null;
-    
+
 
     public float groundPosition;
 
@@ -94,7 +93,6 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     void Start()
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
@@ -104,16 +102,15 @@ public class PlayerController : MonoBehaviour
         playerCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         playerAnimator = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        
     }
     void FixedUpdate()
     {
-      
+
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, new Vector2(0.4f, 0.1f), 0f, Vector2.down, groundCheckRadius, groundMask); //using this for a bigger and more accurate ground check
         isTouchingGround = (hit.collider != null) ? true : false;
 
         movementInput = Input.GetAxis("Horizontal");
-       
+
         CheckIfStuck(); //Checks if Mario is trying to walk into the wall and get stuck
         if (!isDead)
         {
@@ -164,11 +161,11 @@ public class PlayerController : MonoBehaviour
                 jumpTimeCounter = 0;
             }
 
-           
             playerAnimator.SetFloat("movementSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
             playerAnimator.SetBool("touchingGround", isTouchingGround);
 
-            if (playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController) {
+            if (playerAnimator.runtimeAnimatorController == bigMarioAnimatorController as RuntimeAnimatorController)
+            {
                 if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
                 {
                     playerAnimator.SetBool("marioDucking", true);
@@ -185,13 +182,13 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
         }
-        if (transform.position.x <118f && transform.position.y <-1.5f && isGameFinished == true)
+        if (transform.position.x < 118f && transform.position.y < -1.5f && isGameFinished == true)
         {
-            playTimeline = true; 
+            playTimeline = true;
         }
-        if (transform.position.x < 124f && isGameFinished == true && playTimeline==true)
+        if (transform.position.x < 124f && isGameFinished == true && playTimeline == true)
         {
-          StartCoroutine(MovePlayerTowardsCastle());
+            StartCoroutine(MovePlayerTowardsCastle());
         }
         if (playerRigidbody2D.transform.position.y < -5 && !isDead)
         {
@@ -238,14 +235,14 @@ public class PlayerController : MonoBehaviour
     }
     public void TimelinePlay()
     {
-        if(playTimeline==true)
+        if (playTimeline == true)
         {
             playerAnimator.SetBool("touchingGround", true);
             playerRigidbody2D.position = new Vector2(playerRigidbody2D.position.x + 1f, playerRigidbody2D.position.y);
             FlipSprite();
             playTimeline = false;
-            
-            
+
+
         }
     }
     public void PowerUp()
@@ -263,8 +260,6 @@ public class PlayerController : MonoBehaviour
             playerAnimator.runtimeAnimatorController = fireMario as RuntimeAnimatorController;
             audioSource.PlayOneShot(levelUpSound);
         }
-        
-
     }
     public void OneLifeUp()
     {
@@ -293,7 +288,6 @@ public class PlayerController : MonoBehaviour
             isDead = true;
             FindObjectOfType<GameManager>().EndGame();
         }
-
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -325,23 +319,21 @@ public class PlayerController : MonoBehaviour
     }
     public float GetGroundPosition()
     {
-       return groundPosition = playerRigidbody2D.position.y;
+        return groundPosition = playerRigidbody2D.position.y;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         takeAwayControll = false; //give back control when it's no longer colliding with anything
     }
-    
-
     IEnumerator MovePlayerDownPoleEnum()
     {
         playerRigidbody2D.isKinematic = true;
-        while (transform.position.y >-1.3f)
+        while (transform.position.y > -1.3f)
         {
-           
-           transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
-           yield return new WaitForSeconds(0.3f);
+
+            transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.4f);
+            yield return new WaitForSeconds(0.3f);
         }
         FlipSprite();
         transform.position = new Vector2(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y);
@@ -359,6 +351,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         FindObjectOfType<Fireworks>().PlayFireworks();
     }
-
 }
 
